@@ -1,0 +1,327 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap");
+
+:root {
+  --accent: #00a8ff;
+  --white: white;
+  --black: black;
+}
+
+body {
+  font-family: "Sora", sans-serif;
+  background-color: var(--black);
+  margin: 0px;
+  padding: 0px;
+  background-image: url("y-so-serious.png");
+  background-attachment: fixed;
+}
+
+header {
+  height: 3rem;
+  background-color: #00a8ff;
+  font-weight: 500;
+  color: var(--white);
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.flex.col {
+  flex-direction: column;
+}
+
+.pong-table {
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 20rem;
+  height: 10rem;
+  margin: 1rem 0rem;
+  position: relative;
+}
+
+.pong-table > .paddle {
+  height: 2rem;
+  width: 0.5rem;
+  background-color: white;
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pong-table > .paddle.two {
+  border-right: 2px solid red;
+}
+
+.pong-table > .paddle.one {
+  left: 96%;
+  border-left: 2px solid red;
+}
+
+.pong-table > .ball {
+  height: 1rem;
+  width: 1rem;
+  background-color: var(--accent);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 1rem;
+  transform: translate(-50%, -50%);
+}
+
+section {
+  width: 80%;
+  max-width: 30rem;
+  margin: 1rem 1rem;
+}
+
+section > h1 {
+  background-color: var(--accent);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  margin: 0px;
+  width: 60%;
+  transform: translate(0%, 50%);
+
+  transition-property: width;
+  transition-duration: 1s;
+}
+
+section > h1::before {
+  content: "- ";
+}
+
+section > h1::after {
+  content: " -";
+}
+
+section:hover > h1 {
+  width: 80%;
+}
+
+section > p,
+section > ol {
+  border: 1px solid var(--accent);
+  color: var(--white);
+  padding: 2rem 1rem 1rem 1rem;
+  margin: 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+section > ol {
+  padding-left: 3rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 0.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  font-family: "Sora", sans-serif;
+}
+
+button:active {
+  background-color: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+  transition-property: background-color;
+  transition-duration: 0.1s;
+}
+
+button.white {
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+button.white:active {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: var(--black);
+  transition-property: background-color;
+  transition-duration: 0.1s;
+}
+
+.video-holder {
+  position: relative;
+  margin: 1rem;
+}
+
+video {
+  border: 1px solid var(--white);
+}
+
+.name {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  width: 99%;
+
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 1s;
+}
+
+.video-holder:hover > .name {
+  opacity: 1;
+}
+
+.rain {
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  width: 0.2rem;
+  height: 1rem;
+  background-color: var(--accent);
+  animation-name: example;
+  animation-duration: 10s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  z-index: -1;
+}
+
+.box123 {
+  --to: 80%;
+  position: fixed;
+  top: 0%;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent);
+  border: solid 1px white;
+  opacity: 0.5;
+  border-radius: 0.2rem;
+  animation-name: fall;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  z-index: -1;
+}
+
+@keyframes fall {
+  from {
+    top: 0%;
+  }
+  to {
+    top: var(--to);
+  }
+}
+
+@keyframes example {
+  from {
+    top: 0%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+.page {
+  height: min-content;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  flex-direction: col;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.page .inner {
+  height: 90%;
+  width: 90%;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding-top: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.box {
+  position: relative;
+  top: 20%;
+  left: 20%;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent);
+  animation-name: pong;
+  animation-duration: 10s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.page h1 {
+  color: white;
+  padding: 0px;
+  margin: 0px;
+}
+
+.page h2 {
+  color: var(--accent);
+  padding: 0px;
+  margin: 0px;
+  font-size: 1rem;
+}
+
+@keyframes pong {
+  0%,
+  100% {
+    top: 10%;
+    left: 10%;
+  }
+  33% {
+    top: 80%;
+    left: 50%;
+  }
+
+  66% {
+    top: 20%;
+    left: 80%;
+  }
+}
