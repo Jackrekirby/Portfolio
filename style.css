@@ -20,7 +20,7 @@ body {
   background-color: var(--black);
   margin: 0px;
   padding: 0px;
-  background-image: url("/res/background.png");
+  background-image: url("res/background.png");
   background-attachment: fixed;
 }
 
