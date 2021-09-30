@@ -24,6 +24,31 @@ body {
   background-attachment: fixed;
 }
 
+.rain {
+  position: fixed;
+  top: -10%;
+  left: 50%;
+  width: 0.2rem;
+  height: 1rem;
+  background-color: var(--accent);
+  animation-name: rain-animation;
+  animation-duration: 3s;
+  animation-delay: 0s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  z-index: -1;
+  order: 1000;
+}
+
+@keyframes rain-animation {
+  from {
+    top: -10%;
+  }
+  to {
+    top: 110%;
+  }
+}
+
 /* ======================= FLEX ======================= */
 
 .flex {
@@ -49,6 +74,7 @@ body {
   margin: 1rem;
   width: 20rem;
   height: 40rem;
+  overflow: hidden;
 }
 
 h1 {
@@ -124,7 +150,7 @@ a {
   margin: 0px;
   width: 60%;
   transform: translate(0%, 50%);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .titlepage > h1::before {

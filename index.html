@@ -6,149 +6,153 @@
     <link rel="stylesheet" href="style.css" />
     <title>Jack Kirby</title>
   </head>
-  <body class="flex">
-    <div id="page-title" class="page flex even">
-      <div class="pong-table">
-        <div id="ball"></div>
-        <div id="paddle-one" class="paddle"></div>
-        <div id="paddle-two" class="paddle"></div>
-      </div>
-      <div class="flex">
-        <h1>
-          Jack <br />
-          Kirby
-        </h1>
-        <h2>Mechanical Engineer</h2>
-        <h3>(and coding enthusiast!)</h3>
-      </div>
-    </div>
-
-    <div id="page-about" class="titlepage flex">
-      <h1>About Me</h1>
-      <div class="container">
-        <p>
-          Hello, I am Jack, a Mechanical Engineer who loves coding! This website
-          shows off some of my academic and personal projects.
-        </p>
-      </div>
-    </div>
-
-    <div id="page-start" class="titlepage flex">
-      <h1>The Start</h1>
-      <div class="container">
-        <p>
-          My coding journey began with designing a Caesar Shift encoder &
-          decoder in QB64 for a school project. <br /><br />
-          Whilst I never took Computing for GCSE or A level I continued to
-          improve my coding ability, learning Python, Java and then C++. (most
-          often in the form of games!).
-        </p>
-        <div id="jumper">
-          <div class="player"></div>
-          <div class="hurdle"></div>
+  <body>
+    <div id="foreground" class="flex">
+      <div id="page-title" class="page flex even">
+        <div class="pong-table">
+          <div id="ball"></div>
+          <div id="paddle-one" class="paddle"></div>
+          <div id="paddle-two" class="paddle"></div>
+        </div>
+        <div class="flex">
+          <h1>
+            Jack <br />
+            Kirby
+          </h1>
+          <h2>Mechanical Engineer</h2>
+          <h3>(and coding enthusiast!)</h3>
         </div>
       </div>
-    </div>
 
-    <div id="page-uni" class="titlepage flex">
-      <h1>University</h1>
-      <div class="container flex">
-        <p>
-          At Warwick Univeristy my breadth of coding languages increased,
-          learning MATLAB as part of my Mechanical Engineering course.
-          <br /><br />
-          For my 3rd year project I taught myself C++ to design a Molecule
-          simulator, then Web Langauges for Heat Pump simulation in my 4th year
-          project.
-        </p>
-        <div id="falling-boxes"></div>
+      <div id="page-about" class="titlepage flex">
+        <h1>About Me</h1>
+        <div class="container">
+          <p>
+            Hello, I am Jack, a mechanical engineer who loves coding! This
+            website shows off some of my academic and personal projects.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div id="page-accord" class="titlepage flex">
-      <h1>AcCoRD 2.0</h1>
-      <div class="container">
-        <p>
-          AcCoRD (Actor-based Communication via Reaction-Diffusion) is a
-          simulation tool for molecular communication. AcCoRD 2.0 is a
-          completely redesigned version of the original simulator (built in C)
-          using C++. <br /><br />
-          Environments are defined in JSON and are passed as a command line
-          argument to the simulator which outputs data on molecule location and
-          counts using a custom binary format. <br /><br />
-          The data can then be visualised using MATLAB. Find the code along with
-          videos demonstrating the simulations on
-          <a href="https://github.com/Jackrekirby/AcCoRD2">GitHub</a>.
-        </p>
+      <div id="page-start" class="titlepage flex">
+        <h1>The Start</h1>
+        <div class="container">
+          <p>
+            My coding journey began with designing a Caesar shift encoder &
+            decoder in QB64 for a school project. <br /><br />
+            Whilst I never took Computing for GCSE or A level I continued to
+            improve my coding ability, learning Python, Java and then C++. (most
+            often in the form of games!).
+          </p>
+          <div id="jumper">
+            <div class="player"></div>
+            <div class="hurdle"></div>
+          </div>
+        </div>
       </div>
-      <div id="molecule"></div>
-    </div>
 
-    <div id="page-asteriods" class="titlepage flex">
-      <h1>Asteriods</h1>
-      <div class="container">
-        <video controls src="res/asteriods.mp4"></video>
-        <p>
-          A recreation of the classic arcade game Asteriods made using a custom
-          built game engine written in Java.
-        </p>
+      <div id="page-uni" class="titlepage flex">
+        <h1>University</h1>
+        <div class="container flex">
+          <p>
+            At Warwick University my breadth of coding languages increased,
+            learning MATLAB as part of my mechanical engineering course.
+            <br /><br />
+            For my 3rd year project I taught myself C++ to design a molecule
+            communication simulator, then web languages (HTML,CSS & JS) for my
+            4th year project, creating a heat pump simulation website.
+          </p>
+          <div id="falling-boxes"></div>
+        </div>
       </div>
-    </div>
 
-    <div id="page-minesweeper" class="titlepage flex">
-      <h1>Minesweeper</h1>
-      <div class="container">
-        <video controls src="res/minesweeper.mp4"></video>
-        <p>A recreation of Minesweeper made using the SFML library in C++.</p>
+      <div id="page-accord" class="titlepage flex">
+        <h1>AcCoRD 2.0</h1>
+        <div class="container">
+          <p>
+            AcCoRD (Actor-based Communication via Reaction-Diffusion) is a
+            simulation tool for molecular communication. AcCoRD 2.0 is a
+            completely redesigned version of the original simulator (built in C)
+            using C++. <br /><br />
+            Environments are defined in JSON and are passed as a command line
+            argument to the simulator which outputs data on molecule location
+            and counts using a custom binary format. <br /><br />
+            The output data can then be visualised using MATLAB. Find the code
+            along with videos demonstrating the simulations on
+            <a href="https://github.com/Jackrekirby/AcCoRD2">GitHub</a>.
+          </p>
+        </div>
+        <div id="molecule"></div>
       </div>
-    </div>
 
-    <div id="page-pacman-cpp" class="titlepage flex">
-      <h1>Pacman</h1>
-      <div class="container">
-        <video controls src="res/pacman_cpp.mp4"></video>
-        <p>
-          A recreation of the classic arcade game Pacman made using the SFML
-          library in C++.
-        </p>
+      <div id="page-asteriods" class="titlepage flex">
+        <h1>Asteriods</h1>
+        <div class="container">
+          <video controls src="res/asteriods.mp4"></video>
+          <p>
+            A recreation of the classic arcade game Asteriods made using a
+            custom built game engine written in Java.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div id="page-pacman-matlab" class="titlepage flex">
-      <h1>Pacman</h1>
-      <div class="container">
-        <video controls src="res/pacman_matlab.mp4"></video>
-        <p>
-          A recreation of the classic arcade game Pacman made in MATLAB. This
-          required extensive vectorisation to achieve a satisfactory framerate.
-        </p>
+      <div id="page-minesweeper" class="titlepage flex">
+        <h1>Minesweeper</h1>
+        <div class="container">
+          <video controls src="res/minesweeper.mp4"></video>
+          <p>A recreation of Minesweeper made using the SFML library in C++.</p>
+        </div>
       </div>
-    </div>
 
-    <div id="page-watch-history" class="titlepage flex">
-      <h1>Watch History</h1>
-      <div class="container">
-        <p>
-          This website, written using HTML, CSS and vanilla Javascript will
-          create a list of a Netflix users watched series and films. Check out
-          the source code and website on
-          <a href="https://github.com/Jackrekirby/netflix-watch-history"
-            >GitHub</a
-          >.
-        </p>
+      <div id="page-pacman-cpp" class="titlepage flex">
+        <h1>Pacman C++</h1>
+        <div class="container">
+          <video controls src="res/pacman_cpp.mp4"></video>
+          <p>
+            A recreation of the classic arcade game Pacman made using the SFML
+            library in C++.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div id="page-scorecard" class="titlepage flex">
-      <h1>Scorecard</h1>
-      <div class="container">
-        <p>
-          This website, written using HTML, CSS and vanilla Javascript acts as a
-          scorecard for the card game 'Oh Hell'. It includes score
-          autocompletion and validation checks. Check out the source code and
-          website on
-          <a href="https://github.com/Jackrekirby/Oh-Hell-Scorecard">GitHub</a>.
-        </p>
+      <div id="page-pacman-matlab" class="titlepage flex">
+        <h1>Pacman MATLAB</h1>
+        <div class="container">
+          <video controls src="res/pacman_matlab.mp4"></video>
+          <p>
+            A recreation of the classic arcade game Pacman built in MATLAB. This
+            required extensive vectorisation to achieve a satisfactory frame
+            rate.
+          </p>
+        </div>
+      </div>
+
+      <div id="page-watch-history" class="titlepage flex">
+        <h1>Watch History</h1>
+        <div class="container">
+          <p>
+            This website, written using HTML, CSS and vanilla Javascript will
+            create a list of a Netflix users watched series and films. Check out
+            the source code and website on
+            <a href="https://github.com/Jackrekirby/netflix-watch-history"
+              >GitHub</a
+            >.
+          </p>
+        </div>
+      </div>
+
+      <div id="page-scorecard" class="titlepage flex">
+        <h1>Scorecard</h1>
+        <div class="container">
+          <p>
+            This website, written using HTML, CSS and vanilla Javascript acts as
+            a scorecard for the card game 'Oh Hell'. It includes score
+            autocompletion and validation checks. Check out the source code and
+            website on
+            <a href="https://github.com/Jackrekirby/Oh-Hell-Scorecard">GitHub</a
+            >.
+          </p>
+        </div>
       </div>
     </div>
     <script src="index.js"></script>

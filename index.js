@@ -206,13 +206,47 @@ function moveCarousel(event) {
     event.path[pathID].getElementsByTagName('div')[j].style.display = 'inline';
 }
 
+class Rain {
+    static init(parentElement, count) {
+        for (let i = 0; i < count; i++) {
+            let element = document.createElement('div');
+            element.classList.add('rain');
+            Rain.style(element);
+            element.addEventListener("animationend", this.update2);
+            parentElement.appendChild(element);
+        }
+    }
+
+    static style(element) {
+        element.style.top = '-10%';
+        element.style.left = String(Math.random() * 100) + '%';
+        let dropletSize = (5 * Math.random()) / 5 + 0.1;
+        element.style.width = `${dropletSize * 0.2}rem`
+        element.style.height = `${dropletSize * 1}rem`
+        let t = 20 - dropletSize * 10;
+        element.style.animationDuration = `${t}s`;
+        element.style.animationDelay = `${Math.random() * 10}s`;
+    }
+
+    static update2(event) {
+        let element = event.path[0];
+        Rain.style(element);
+        element.classList.remove('rain');
+        setTimeout(() => element.classList.add('rain'), 1)
+    }
+}
+
+
+
 boxes = Array(6).fill(0);
 initCarousel();
+Rain.init(document.body, 10);
 
 // console.log('BOID');
 // for (let i = 0; i < document.getElementsByClassName('boid').length; i++) {
 //     Boid.all.push(new Boid(i));
 // }
+
 
 var intervalId = window.setInterval(function () {
     ball.update();
