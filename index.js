@@ -1,158 +1,73 @@
-console.log('javascript running')
 
 
-class Ball {
-    constructor() {
-        this.x = 50;
-        this.y = 50;
+class PingPong {
+    constructor(parentElement) {
+        this.ball = {
+            'x': 50, 'y': 50,
+            'dx': 0.75, 'dy': 0.3
+        }
 
-        this.vx = 0.5;
-        this.vy = 0.2;
+        this.paddleWidth = 15;
 
-        this.py = 50;
-        this.p2y = 50;
+        this.paddle1 = {
+            'x': 50,
+        }
+        this.paddle2 = {
+            'x': 50,
+        }
+
+        this.ballEle = document.createElement('div');
+        this.ballEle.classList.add('ball');
+        parentElement.appendChild(this.ballEle);
+
+        this.paddle1Ele = document.createElement('div');
+        this.paddle1Ele.classList.add('paddle');
+        this.paddle1Ele.classList.add('p1');
+        parentElement.appendChild(this.paddle1Ele);
+
+        this.paddle2Ele = document.createElement('div');
+        this.paddle2Ele.classList.add('paddle');
+        this.paddle2Ele.classList.add('p2');
+        parentElement.appendChild(this.paddle2Ele);
     }
 
     update() {
-        let paddleWidth = 15;
-        document.getElementById('ball').style.left = String(this.x) + '%'
-        document.getElementById('ball').style.top = String(this.y) + '%'
+        this.ballEle.style.left = `${this.ball.x}%`
+        this.ballEle.style.top = `${this.ball.y}%`
 
-        if (this.vy < 0) {
-            document.getElementById('paddle-one').style.left = String(this.py) + '%'
-            this.py = this.py - ((100 - this.y) / 1000) * (this.py - this.x);
-            this.py = Math.min(this.py, 100 - paddleWidth);
-            this.py = Math.max(this.py, paddleWidth);
+        if (this.ball.dy > 0) {
+            this.paddle1Ele.style.left = `${this.paddle1.x}%`
+            this.paddle1.x -= ((this.ball.y) / 1000) * (this.paddle1.x - this.ball.x);
+            this.paddle1.x = clamp(this.paddle1.x, this.paddleWidth, 100 - this.paddleWidth);
         } else {
-            document.getElementById('paddle-two').style.left = String(this.p2y) + '%'
-            this.p2y = this.p2y - (this.y / 1000) * (this.p2y - this.x);
-            this.p2y = Math.min(this.p2y, 100 - paddleWidth);
-            this.p2y = Math.max(this.p2y, paddleWidth);
+            this.paddle2Ele.style.left = `${this.paddle2.x}%`
+            this.paddle2.x -= ((100 - this.ball.y) / 1000) * (this.paddle2.x - this.ball.x);
+            this.paddle2.x = clamp(this.paddle2.x, this.paddleWidth, 100 - this.paddleWidth);
         }
 
+        this.ball.x += this.ball.dx;
+        this.ball.y += this.ball.dy;
 
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.y >= 93 || this.y <= 7) {
-            this.vy *= -1;
+        if (this.ball.y >= 93 || this.ball.y <= 7) {
+            this.ball.dy *= -1;
         }
 
-
-        if (this.x >= 96 || this.x <= 4) {
-            this.vx *= -1;
+        if (this.ball.x >= 95 || this.ball.x <= 5) {
+            this.ball.dx *= -1;
         }
     }
 }
 
+function addFallingbox() {
+    let numRows = 5;
 
-class Particle {
-    constructor(id) {
-        this.id = id
-        this.x = 5;
-        this.y = 10;
-    }
-    move() {
-        let particle = document.getElementById('molecule').getElementsByClassName('particle')[this.id];
-        this.x += 0.1 * (Math.random() - 0.5);
-        this.y += 0.1 * (Math.random() - 0.5);
-        this.x = Math.min(this.x, 9.5);
-        this.x = Math.max(this.x, 0.5);
-        this.y = Math.min(this.y, 19.5);
-        this.y = Math.max(this.y, 0.5);
-        particle.style.top = String(this.x) + 'rem'
-        particle.style.left = String(this.y) + 'rem'
-    }
-}
-
-
-function rand(min, max) {
-    return min + Math.random() * (max - min);
-}
-
-class Boid {
-    constructor(id) {
-        this.element = document.getElementsByClassName('boid')[id];
-        this.unit = 'rem'
-        this.vx = (Math.random() - 0.5) * 0.1;
-        this.vy = (Math.random() - 0.5) * 0.1;
-
-        this.element.style.left = `${rand(30, 60)}%`;
-        this.element.style.top = `${rand(30, 60)}%`;
-
-    }
-
-    get x() {
-        let a = getComputedStyle(this.element).left;
-        return a.substring(0, a.length - 2);
-    }
-
-    get y() {
-        let a = getComputedStyle(this.element).top;
-        return a.substring(0, a.length - 2);
-    }
-
-    dist2(x, y) {
-        let dx = (this.x - x) ** 2;
-        let dy = (this.y - y) ** 2;
-        return dx + dy;
-    }
-
-    align() {
-        let vx = 0, vy = 0;
-        let count = 0;
-        for (let boid of Boid.all) {
-            let d = this.dist2(boid.x, boid.y);
-            if (d > 1000 && d < 10000) {
-                vx += boid.vx;
-                vy += boid.vy;
-                count++;
-            }
-        }
-        count++;
-        vx += this.vx;
-        vy += this.vy;
-        vx /= count;
-        vy /= count;
-        this.vx -= 0.01 * (this.vx - vx);
-        this.vy -= 0.01 * (this.vy - vy);
-    }
-
-    update() {
-        // this.vx -= Math.sign(this.x - (window.innerWidth / 2)) * ((Math.random() - 0.3) * 0.001);
-        // this.vy -= Math.sign(this.y - (window.innerHeight / 2)) * ((Math.random() - 0.3) * 0.001);
-
-        this.element.style.left = `calc(${this.x}px + ${this.vx}${this.unit})`;
-        this.element.style.top = `calc(${this.y}px + ${this.vy}${this.unit})`;
-        this.align();
-    }
-}
-
-Boid.all = new Array();
-
-
-let ball = new Ball();
-let particles = new Array();
-
-for (let i = 0; i < 32; i++) {
-    let div = document.createElement('div');
-    div.classList.add('particle');
-    if (i % 2 == 0) {
-        div.classList.add('w');
-    }
-    document.getElementById('molecule').appendChild(div);
-    particles.push(new Particle(i));
-}
-
-function box() {
-    console.log('box')
     let div = document.createElement('div')
-    let i = Math.floor(Math.random() * 6);
+    let i = Math.floor(Math.random() * boxes.length);
 
     div.classList.add(`falling-box`);
     div.classList.add(`line-${i}`);
 
-    if (boxes[i] > 5) {
+    if (boxes[i] > numRows) {
         let elements = document.getElementById('falling-boxes').getElementsByClassName(`line-${i}`);
         while (elements.length > 0) {
             elements[0].parentNode.removeChild(elements[0]);
@@ -163,47 +78,47 @@ function box() {
     boxes[i]++;
     let x = i + (Math.random() * 0.2);
     if ((boxes[i] + i) % 2 == 0) {
-        div.style.backgroundColor = 'white';
+        div.style.backgroundColor = 'var(--clr-light)';
     }
 
     div.style.left = `calc(50% + ${(x - 3) * 3}rem)`;
     div.style.setProperty('--to', `calc(100% - ${boxes[i]}rem)`);
 
     document.getElementById('falling-boxes').appendChild(div);
-
 }
 
-
-function initCarousel() {
-    let carousels = document.getElementsByClassName('carousel');
-    for (let carousel of carousels) {
-        let button = carousel.getElementsByTagName('button')[0];
-        button.addEventListener("click", moveCarousel);
+class Particle {
+    constructor(id) {
+        this.id = id
+        this.x = 50;
+        this.y = 50;
     }
-    for (let carousel of carousels) {
-        carousel.getElementsByTagName('div')[0].style.display = 'inline';
-    }
-}
 
-function moveCarousel(event) {
-    console.log('event', this)
-    let pathID = 1;
-    let divs = event.path[pathID].getElementsByTagName('div');
-    let i = 0;
-    for (let div of divs) {
-        if (div.style.display == 'inline') {
-            console.log('i', i)
-            break;
+    static create(count) {
+        let particles = new Array();
+        for (let i = 0; i < 32; i++) {
+            let div = document.createElement('div');
+            div.classList.add('particle');
+            if (i % 2 == 0) {
+                div.classList.add('w');
+            }
+            document.getElementById('particles').appendChild(div);
+            particles.push(new Particle(i));
         }
-        i++;
-    }
-    let j = i + 1;
-    if (i + 1 == divs.length) {
-        j = 0;
+        return particles
     }
 
-    event.path[pathID].getElementsByTagName('div')[i].style.display = 'none';
-    event.path[pathID].getElementsByTagName('div')[j].style.display = 'inline';
+    update() {
+        let particle = document.getElementById('particles').getElementsByClassName('particle')[this.id];
+        this.x += 1 * (Math.random() - 0.5);
+        this.y += 1 * (Math.random() - 0.5);
+        this.x = Math.min(this.x, 95);
+        this.x = Math.max(this.x, 5);
+        this.y = Math.min(this.y, 95);
+        this.y = Math.max(this.y, 5);
+        particle.style.top = String(this.x) + '%'
+        particle.style.left = String(this.y) + '%'
+    }
 }
 
 class Rain {
@@ -236,29 +151,26 @@ class Rain {
     }
 }
 
+function clamp(val, min, max) {
+    return Math.min(Math.max(val, min), max);
+};
 
-
-boxes = Array(6).fill(0);
-initCarousel();
+let pingPong = new PingPong(document.getElementById('ping-pong'))
+let boxes = Array(6).fill(0);
+let particles = Particle.create(32);
 Rain.init(document.getElementById('rain-container'), 10);
 
-// console.log('BOID');
-// for (let i = 0; i < document.getElementsByClassName('boid').length; i++) {
-//     Boid.all.push(new Boid(i));
-// }
+let fastLoop = window.setInterval(function () {
+    pingPong.update();
 
-
-var intervalId = window.setInterval(function () {
-    ball.update();
     for (let a of particles) {
-        a.move();
+        a.update();
     }
+}, 15);
 
-    for (let boid of Boid.all) {
-        boid.update();
-    }
-}, 10);
-
-var intervalId2 = window.setInterval(function () {
-    box();
+let slowLoop = window.setInterval(function () {
+    addFallingbox();
 }, 3000);
+
+
+

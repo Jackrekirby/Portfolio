@@ -1,199 +1,177 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap");
+@import url(https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap);
 
 :root {
-  --accent: #00a8ff;
-  --white: white;
-  --black: black;
-  --alpha-black: rgba(0, 0, 0, 0.7);
+  --clr-accent: #00a8ff;
+  --clr-light: white;
+  --clr-dark: black;
+  --clr-alpha-dark: rgba(0, 0, 0, 0.7);
 }
 
 * {
-  margin: 0px;
-  padding: 0px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   position: relative;
-  font-family: "Sora", sans-serif;
-  color: var(--white);
-
+  font-family: Sora, sans-serif;
+  color: var(--clr-light);
   background-color: var(--black);
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   background-image: url("res/background.png");
   background-attachment: fixed;
 }
 
-.rain {
-  position: fixed;
-  top: -10%;
-  left: 50%;
-  width: 0.2rem;
-  height: 1rem;
-  background-color: var(--accent);
-  animation-name: rain-animation;
-  animation-duration: 3s;
-  animation-delay: 0s;
-  animation-timing-function: ease-in;
-  animation-iteration-count: 1;
-  z-index: -1;
-  order: 1000;
+/* Container */
+
+.containers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes rain-animation {
-  from {
-    top: -10%;
-  }
-  to {
-    top: 110%;
-  }
+.container {
+  position: relative;
+  background-color: var(--clr-alpha-dark);
+  width: 20rem;
+  border: 1px solid var(--clr-accent);
+  margin: 2rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ======================= FLEX ======================= */
+.container > h1 {
+  position: absolute;
+  top: 0;
+  background-color: var(--clr-accent);
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  min-width: 50%;
+  max-width: 90%;
+  transform: translate(0, -50%);
+  font-size: 1.3rem;
+}
 
-.flex {
+.container div {
+  font-size: 0.8rem;
+}
+
+.container div * + p {
+  margin-top: 0.8rem;
+}
+
+.container div a {
+  text-decoration: underline;
+  color: var(--clr-accent);
+  font-weight: 700;
+}
+
+.container video {
+  width: 100%;
+}
+
+/* Title Container */
+
+#title-container {
+  height: 40rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
-
+  margin-top: 1rem;
+  padding: 0px;
   text-align: center;
 }
 
-.flex.even {
-  justify-content: space-evenly;
-}
-
-/* ======================= PAGES ======================= */
-
-.page {
-  position: relative;
-  background-color: var(--alpha-black);
-  border: 1px solid var(--accent);
-  margin: 1rem;
-  width: 20rem;
-  height: 40rem;
-  overflow: hidden;
-}
-
-h1 {
+#title-container h1 {
   font-size: 5.5rem;
   font-weight: 700;
 }
 
-h2 {
+#title-container h2 {
   font-size: 1.2rem;
   font-weight: 500;
-  color: var(--accent);
+  color: var(--clr-accent);
 }
 
-h3 {
+#title-container h3 {
   font-size: 0.8rem;
   font-weight: 300;
 }
 
-/* ======================= BUTTONS ======================= */
+/* Start Container */
 
-button {
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 1rem;
-  background-color: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: 0.1rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--white);
-  font-family: "Sora", sans-serif;
+#start-container {
+  padding-bottom: 0px;
 }
 
-button:active {
-  background-color: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
-  transition-property: background-color;
-  transition-duration: 0.1s;
-}
+/* Ping Pong */
 
-button.white {
-  padding: 0.5rem 1rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--white);
-  color: var(--white);
-}
-
-button.white:active {
-  background-color: var(--white);
-  border-color: var(--white);
-  color: var(--black);
-  transition-property: background-color;
-  transition-duration: 0.1s;
-}
-
-a {
-  text-decoration: underline;
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* ======================= TITLEPAGE ======================= */
-
-.titlepage {
-  width: 20rem;
-  margin: 0rem 1rem 1rem 1rem;
-}
-
-.titlepage > h1 {
-  background-color: var(--accent);
-  padding: 0.5rem 1rem;
-  text-align: center;
-  margin: 0px;
-  width: 60%;
-  transform: translate(0%, 50%);
-  font-size: 1.3rem;
-}
-
-.titlepage > h1::before {
-  content: "";
-}
-
-.titlepage > h1::after {
-  content: "";
-}
-
-.titlepage > .container {
-  text-align: left;
-  border: 1px solid var(--accent);
-  margin: 0px;
-  padding: 2rem 1rem 1rem 1rem;
-  font-size: 0.8rem;
-  background-color: var(--alpha-black);
-}
-
-.container p {
-  padding: 0.5rem 0rem 0rem 0rem;
-}
-.container video {
+#ping-pong {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-/* ======================= JUMPER ======================= */
+#ping-pong > .paddle {
+  position: absolute;
+  height: 0.7rem;
+  width: 5rem;
+  background-color: var(--clr-accent);
 
-#jumper {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#ping-pong > .paddle.p1 {
+  top: 96%;
+  border-top: 2px solid var(--clr-light);
+  border-radius: 1rem 1rem 0.5rem 0.5rem;
+}
+
+#ping-pong > .paddle.p2 {
+  top: 4%;
+  border-bottom: 2px solid var(--clr-light);
+  border-radius: 0.5rem 0.5rem 1rem 1rem;
+}
+
+#ping-pong > .ball {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--clr-accent);
+
+  border-radius: 1rem;
+  transform: translate(-50%, -50%);
+}
+
+/* Hurdles */
+
+#hurdles {
   position: relative;
   width: 100%;
   height: 3rem;
+  margin-top: 0.8rem;
 }
 
-#jumper .player {
+#hurdles .player {
   position: absolute;
   bottom: 0%;
   left: 30%;
   width: 0.5rem;
   height: 1rem;
-  background-color: var(--white);
+  background-color: var(--clr-light);
 
-  animation-name: player-move;
+  animation-name: player-animation;
   animation-duration: 2s;
   animation-delay: 0s;
   animation-timing-function: linear;
@@ -201,7 +179,7 @@ a {
   animation-fill-mode: forwards;
 }
 
-@keyframes player-move {
+@keyframes player-animation {
   from,
   50% {
     bottom: 0%;
@@ -243,15 +221,15 @@ a {
   }
 }
 
-#jumper .hurdle {
+#hurdles .hurdle {
   position: absolute;
   bottom: 0%;
   left: 50%;
   width: 1rem;
   height: 0.5rem;
-  background-color: var(--accent);
+  background-color: var(--clr-accent);
 
-  animation-name: hurdle-move;
+  animation-name: hurdle-animation;
   animation-duration: 2s;
   animation-delay: 0s;
   animation-timing-function: linear;
@@ -259,7 +237,7 @@ a {
   animation-fill-mode: forwards;
 }
 
-@keyframes hurdle-move {
+@keyframes hurdle-animation {
   from {
     left: 97%;
   }
@@ -268,87 +246,13 @@ a {
   }
 }
 
-/* ======================= PONG ======================= */
-
-.pong-table {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.pong-table > .paddle {
-  height: 0.7rem;
-  width: 5rem;
-  background-color: var(--accent);
-  position: absolute;
-  left: 50%;
-  top: 4%;
-  transform: translate(-50%, -50%);
-}
-
-#paddle-one {
-  border-bottom: 2px solid var(--white);
-}
-
-#paddle-two {
-  top: 96%;
-  border-top: 2px solid var(--white);
-}
-
-#ball {
-  height: 2rem;
-  width: 2rem;
-  background-color: var(--accent);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border-radius: 1rem;
-  transform: translate(-50%, -50%);
-}
-
-/* ======================= MOLECULE ======================= */
-
-#molecule {
-  position: absolute;
-  width: 20rem;
-  height: 10rem;
-  z-index: -1;
-}
-
-#molecule > .particle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: var(--accent);
-}
-
-#molecule .particle.w {
-  background-color: var(--white);
-}
-
-/* ======================= BOID ======================= */
-
-/* .boid {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  width: 2rem;
-  height: 2rem;
-
-  background-color: red;
-} */
-
-/* ======================= FALLING BOX ======================= */
+/* Falling Boxes */
 
 #falling-boxes {
   position: absolute;
+  bottom: 0%;
   width: 20rem;
-  height: 10rem;
+  height: 9rem;
   z-index: -1;
 }
 
@@ -358,10 +262,9 @@ a {
   top: 0%;
   width: 1.5rem;
   height: 1rem;
-  background-color: var(--accent);
-  /* border: 1px solid var(--accent); */
-  opacity: 1;
-  animation-name: fall;
+  background-color: var(--clr-accent);
+
+  animation-name: falling-box-animation;
   animation-duration: 2s;
   animation-delay: 0s;
   animation-timing-function: linear;
@@ -370,7 +273,7 @@ a {
   z-index: 1;
 }
 
-@keyframes fall {
+@keyframes falling-box-animation {
   from {
     top: 0%;
     transform: rotate(0deg);
@@ -381,77 +284,51 @@ a {
   }
 }
 
-/* ======================= CAROUSEL ======================= */
-
-.carousel {
-  position: relative;
-  background-color: var(--alpha-black);
-  border: 1px solid var(--accent);
-  margin: 1rem;
-  width: 20rem;
-  height: 20rem;
-}
-
-.carousel h1 {
-  font-size: 1.5rem;
-}
-
-.carousel p {
-  font-size: 0.8rem;
-  text-align: left;
-  padding: 0.5rem;
-}
-
-.carousel div {
-  display: none;
-}
-
-.carousel video {
+#particles {
+  position: absolute;
+  top: 0%;
   width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-/* ======================= FLEXORDER ======================= */
-
-/* #page-title {
-  order: 1;
+#particles > .particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--clr-accent);
 }
 
-#page-about {
-  order: 2;
+#particles .particle.w {
+  background-color: var(--clr-light);
 }
 
-#page-start {
-  order: 3;
+/* Rain */
+
+.rain {
+  position: fixed;
+  top: -10%;
+  left: 50%;
+  width: 0.2rem;
+  height: 1rem;
+  background-color: var(--clr-accent);
+  animation-name: rain-animation;
+  animation-duration: 3s;
+  animation-delay: 0s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  z-index: -1;
+  order: 1000;
 }
 
-#page-uni {
-  order: 4;
+@keyframes rain-animation {
+  from {
+    top: -10%;
+  }
+  to {
+    top: 110%;
+  }
 }
-
-#page-accord {
-  order: 5;
-}
-
-#page-asteriods {
-  order: 6;
-}
-
-#page-minesweeper {
-  order: 7;
-}
-
-#page-pacman-cpp {
-  order: 8;
-}
-
-#page-pacman-matlab {
-  order: 9;
-}
-
-#page-watch-history {
-  order: 10;
-}
-
-#page-scorecard {
-  order: 11;
-} */
