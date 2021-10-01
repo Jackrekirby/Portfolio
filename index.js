@@ -240,7 +240,7 @@ class Rain {
 
 boxes = Array(6).fill(0);
 initCarousel();
-Rain.init(document.body, 10);
+Rain.init(document.getElementById('rain-container'), 10);
 
 // console.log('BOID');
 // for (let i = 0; i < document.getElementsByClassName('boid').length; i++) {
